@@ -43,8 +43,8 @@ namespace MyBuddy
 
         private void CmdMove_Click(object sender, EventArgs e)
         {
-            short screenWidth = (short)(Screen.PrimaryScreen.Bounds.Width - 100);
-            short screenHeight = (short)(Screen.PrimaryScreen.Bounds.Height - 100);
+            short screenWidth = (short)(Screen.PrimaryScreen.Bounds.Width - 180);
+            short screenHeight = (short)(Screen.PrimaryScreen.Bounds.Height - 175);
 
             Random rnd = new Random();
             int direction = rnd.Next(1, 5);
