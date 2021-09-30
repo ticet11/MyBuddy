@@ -33,6 +33,18 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="DoubleAgent.AxControl, Version=1.2.0.56, Culture=neutral, PublicKeyToken=69c93fb14342e6fc, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>C:\Program Files (x86)\Double Agent\Dev\DoubleAgent.AxControl.dll</HintPath>
+    </Reference>
+    <Reference Include="DoubleAgent.Control, Version=1.2.0.56, Culture=neutral, PublicKeyToken=69c93fb14342e6fc, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>C:\Program Files (x86)\Double Agent\Dev\DoubleAgent.Control.dll</HintPath>
+    </Reference>
+    <Reference Include="DoubleAgent.Server, Version=1.2.0.56, Culture=neutral, PublicKeyToken=69c93fb14342e6fc, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>C:\Program Files (x86)\Double Agent\Dev\DoubleAgent.Server.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
