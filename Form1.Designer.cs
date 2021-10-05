@@ -35,6 +35,13 @@ namespace MyBuddy
             this.CmdSpeak = new System.Windows.Forms.Button();
             this.txtSpeak = new System.Windows.Forms.TextBox();
             this.CmdMove = new System.Windows.Forms.Button();
+            this.LabelTo = new System.Windows.Forms.Label();
+            this.TBTo = new System.Windows.Forms.TextBox();
+            this.TBSubject = new System.Windows.Forms.TextBox();
+            this.LabelSubject = new System.Windows.Forms.Label();
+            this.TBMessage = new System.Windows.Forms.TextBox();
+            this.LabelMessage = new System.Windows.Forms.Label();
+            this.CmdSend = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // CmdShow
@@ -85,11 +92,78 @@ namespace MyBuddy
             this.CmdMove.UseVisualStyleBackColor = true;
             this.CmdMove.Click += new System.EventHandler(this.CmdMove_Click);
             // 
+            // LabelTo
+            // 
+            this.LabelTo.AutoSize = true;
+            this.LabelTo.Location = new System.Drawing.Point(48, 186);
+            this.LabelTo.Name = "LabelTo";
+            this.LabelTo.Size = new System.Drawing.Size(23, 13);
+            this.LabelTo.TabIndex = 5;
+            this.LabelTo.Text = "To:";
+            // 
+            // TBTo
+            // 
+            this.TBTo.Location = new System.Drawing.Point(99, 183);
+            this.TBTo.Name = "TBTo";
+            this.TBTo.Size = new System.Drawing.Size(154, 20);
+            this.TBTo.TabIndex = 6;
+            this.TBTo.Text = "example@example.com";
+            // 
+            // TBSubject
+            // 
+            this.TBSubject.Location = new System.Drawing.Point(99, 209);
+            this.TBSubject.Name = "TBSubject";
+            this.TBSubject.Size = new System.Drawing.Size(154, 20);
+            this.TBSubject.TabIndex = 8;
+            // 
+            // LabelSubject
+            // 
+            this.LabelSubject.AutoSize = true;
+            this.LabelSubject.Location = new System.Drawing.Point(47, 212);
+            this.LabelSubject.Name = "LabelSubject";
+            this.LabelSubject.Size = new System.Drawing.Size(46, 13);
+            this.LabelSubject.TabIndex = 7;
+            this.LabelSubject.Text = "Subject:";
+            // 
+            // TBMessage
+            // 
+            this.TBMessage.Location = new System.Drawing.Point(99, 235);
+            this.TBMessage.Multiline = true;
+            this.TBMessage.Name = "TBMessage";
+            this.TBMessage.Size = new System.Drawing.Size(154, 53);
+            this.TBMessage.TabIndex = 10;
+            // 
+            // LabelMessage
+            // 
+            this.LabelMessage.AutoSize = true;
+            this.LabelMessage.Location = new System.Drawing.Point(47, 238);
+            this.LabelMessage.Name = "LabelMessage";
+            this.LabelMessage.Size = new System.Drawing.Size(53, 13);
+            this.LabelMessage.TabIndex = 9;
+            this.LabelMessage.Text = "Message:";
+            // 
+            // CmdSend
+            // 
+            this.CmdSend.Location = new System.Drawing.Point(153, 294);
+            this.CmdSend.Name = "CmdSend";
+            this.CmdSend.Size = new System.Drawing.Size(100, 40);
+            this.CmdSend.TabIndex = 11;
+            this.CmdSend.Text = "Send Email";
+            this.CmdSend.UseVisualStyleBackColor = true;
+            this.CmdSend.Click += new System.EventHandler(this.CmdSend_Click);
+            // 
             // FormDashboard
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(301, 163);
+            this.ClientSize = new System.Drawing.Size(301, 439);
+            this.Controls.Add(this.CmdSend);
+            this.Controls.Add(this.TBMessage);
+            this.Controls.Add(this.LabelMessage);
+            this.Controls.Add(this.TBSubject);
+            this.Controls.Add(this.LabelSubject);
+            this.Controls.Add(this.TBTo);
+            this.Controls.Add(this.LabelTo);
             this.Controls.Add(this.CmdMove);
             this.Controls.Add(this.txtSpeak);
             this.Controls.Add(this.CmdSpeak);
@@ -111,6 +185,13 @@ namespace MyBuddy
         private System.Windows.Forms.Button CmdSpeak;
         private System.Windows.Forms.TextBox txtSpeak;
         private System.Windows.Forms.Button CmdMove;
+        private System.Windows.Forms.Label LabelTo;
+        private System.Windows.Forms.TextBox TBTo;
+        private System.Windows.Forms.TextBox TBSubject;
+        private System.Windows.Forms.Label LabelSubject;
+        private System.Windows.Forms.TextBox TBMessage;
+        private System.Windows.Forms.Label LabelMessage;
+        private System.Windows.Forms.Button CmdSend;
     }
 }
 

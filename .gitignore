@@ -9,6 +9,8 @@
 *.user
 *.userosscache
 *.sln.docstates
+credentials.json
+/KOTHTranscript.txt
 
 # User-specific files (MonoDevelop/Xamarin Studio)
 *.userprefs
