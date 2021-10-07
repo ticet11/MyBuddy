@@ -1,37 +1,33 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
 using DoubleAgent.AxControl;
-using Google.Apis.Auth.OAuth2;
-using Google.Apis.Gmail.v1;
-using Google.Apis.Services;
-using Google.Apis.Util.Store;
-using System.Drawing;
-using System.IO;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Threading;
 using System.Windows.Forms;
+using System.Net.Mail;
+using System.Net;
+using System.Threading.Tasks;
+using S22.Imap;
 
 namespace MyBuddy
 {
     public partial class FormDashboard : Form
     {
         AxControl newAgent;
-        string[] Scopes = { GmailService.Scope.GmailSend };
-        string ApplicationName = "MyBuddy";
+        static FormDashboard f;
+        private readonly string _Username;
+        private readonly string _Password;
 
-        public FormDashboard()
+        public FormDashboard(string Username, string Password)
         {
             InitializeComponent();
+            f = this;
+            _Username = Username;
+            _Password = Password;
         }
 
         private void CmdShow_Click(object sender, EventArgs e)
         {
             newAgent.Characters["MyBuddy"].Show();
             newAgent.Characters["MyBuddy"].Speak("Hey, thanks for inviting me to this party!");
+            StartReceiving();
         }
 
         private void FormDashboard_Load(object sender, EventArgs e)
@@ -81,30 +77,55 @@ namespace MyBuddy
 
         }
 
-        string Base64UrlEncode(string input)
-        {
-            var data = Encoding.UTF8.GetBytes(input);
-            return Convert.ToBase64String(data).Replace("+", "-").Replace("/", "_").Replace("=", "");
-        }
-
         private void CmdSend_Click(object sender, EventArgs e)
         {
-            UserCredential userCred;
-            // read credentials file
-            using (FileStream stream = new FileStream(Application.StartupPath + @"/credentials.json", FileMode.Open, FileAccess.Read))
+            MailMessage message = new MailMessage(_Username, TBTo.Text)
             {
-                string path = Environment.GetFolderPath(Environment.SpecialFolder.Personal);
-                path = Path.Combine(path, ".credentials/gmail-dotnet-quickstart.json");
-                userCred = GoogleWebAuthorizationBroker.AuthorizeAsync(GoogleClientSecrets.FromStream(stream).Secrets, Scopes, "user", CancellationToken.None, new FileDataStore(path, true)).Result;
+                Subject = TBSubject.Text,
+                Body = TBMessage.Text
+            };
+
+            using (SmtpClient mailer = new SmtpClient("smtp.hostinger.com", 587))
+            {
+                mailer.Credentials = new NetworkCredential(_Username, _Password);
+                mailer.EnableSsl = true;
+                mailer.Timeout = 120000;
+                mailer.Send(message);
             }
 
-            string message = $"To: {TBTo.Text}\r\nSubject: {TBSubject.Text}\r\nContent-Type: text/html;charset=utf-8\r\n\r\n<h1>{TBMessage.Text}</h1>";
-            // call Gmail service
-            var service = new GmailService(new BaseClientService.Initializer() { HttpClientInitializer = userCred, ApplicationName = ApplicationName });
-            var msg = new Google.Apis.Gmail.v1.Data.Message();
-            msg.Raw = Base64UrlEncode(message.ToString());
-            service.Users.Messages.Send(msg, "me").Execute();
-            newAgent.Characters["MyBuddy"].Speak("I sent the e-mail. Anything else I can do for you, Dad?");
+            TBTo.Text = String.Empty;
+            TBSubject.Text = String.Empty;
+            TBMessage.Text = String.Empty;
+
+            newAgent.Characters["MyBuddy"].Speak("I sent the message. I hope they get it!");
+        }
+
+        private void StartReceiving()
+        {
+            Task.Run(() =>
+            {
+                using (ImapClient client = new ImapClient("imap.hostinger.com", 993, _Username, _Password, AuthMethod.Login, true, null))
+                {
+                    if (client.Supports("IDLE") == false)
+                    {
+                        newAgent.Characters["MyBuddy"].Speak("Server does not support IMAP IDLE");
+                        return;
+                    }
+                    client.NewMessage += new EventHandler<IdleMessageEventArgs>(OnNewMessage);
+                    while (true) ;
+                }
+            });
+        }
+
+        private void OnNewMessage(object sender, IdleMessageEventArgs e)
+        {
+            newAgent.Characters["MyBuddy"].Speak("New Message received!");
+            MailMessage m = e.Client.GetMessage(e.MessageUID, FetchOptions.Normal);
+            f.Invoke((MethodInvoker)delegate
+            {
+                newAgent.Characters["MyBuddy"].Speak($"{m.From} says something about \"{m.Subject}.\" You might want to take a look");
+            });
+
         }
     }
 }
