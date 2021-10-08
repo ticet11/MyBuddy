@@ -29,6 +29,7 @@ namespace MyBuddy
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormDashboard));
             this.CmdShow = new System.Windows.Forms.Button();
             this.CmdHide = new System.Windows.Forms.Button();
@@ -42,6 +43,8 @@ namespace MyBuddy
             this.TBMessage = new System.Windows.Forms.TextBox();
             this.LabelMessage = new System.Windows.Forms.Label();
             this.CmdSend = new System.Windows.Forms.Button();
+            this.CmdOpenProgram = new System.Windows.Forms.Button();
+            this.timer1 = new System.Windows.Forms.Timer(this.components);
             this.SuspendLayout();
             // 
             // CmdShow
@@ -95,7 +98,7 @@ namespace MyBuddy
             // LabelTo
             // 
             this.LabelTo.AutoSize = true;
-            this.LabelTo.Location = new System.Drawing.Point(48, 186);
+            this.LabelTo.Location = new System.Drawing.Point(84, 279);
             this.LabelTo.Name = "LabelTo";
             this.LabelTo.Size = new System.Drawing.Size(23, 13);
             this.LabelTo.TabIndex = 5;
@@ -103,7 +106,7 @@ namespace MyBuddy
             // 
             // TBTo
             // 
-            this.TBTo.Location = new System.Drawing.Point(99, 183);
+            this.TBTo.Location = new System.Drawing.Point(135, 276);
             this.TBTo.Name = "TBTo";
             this.TBTo.Size = new System.Drawing.Size(154, 20);
             this.TBTo.TabIndex = 6;
@@ -111,7 +114,7 @@ namespace MyBuddy
             // 
             // TBSubject
             // 
-            this.TBSubject.Location = new System.Drawing.Point(99, 209);
+            this.TBSubject.Location = new System.Drawing.Point(135, 302);
             this.TBSubject.Name = "TBSubject";
             this.TBSubject.Size = new System.Drawing.Size(154, 20);
             this.TBSubject.TabIndex = 8;
@@ -119,7 +122,7 @@ namespace MyBuddy
             // LabelSubject
             // 
             this.LabelSubject.AutoSize = true;
-            this.LabelSubject.Location = new System.Drawing.Point(47, 212);
+            this.LabelSubject.Location = new System.Drawing.Point(83, 305);
             this.LabelSubject.Name = "LabelSubject";
             this.LabelSubject.Size = new System.Drawing.Size(46, 13);
             this.LabelSubject.TabIndex = 7;
@@ -127,7 +130,7 @@ namespace MyBuddy
             // 
             // TBMessage
             // 
-            this.TBMessage.Location = new System.Drawing.Point(99, 235);
+            this.TBMessage.Location = new System.Drawing.Point(135, 328);
             this.TBMessage.Multiline = true;
             this.TBMessage.Name = "TBMessage";
             this.TBMessage.Size = new System.Drawing.Size(154, 53);
@@ -136,7 +139,7 @@ namespace MyBuddy
             // LabelMessage
             // 
             this.LabelMessage.AutoSize = true;
-            this.LabelMessage.Location = new System.Drawing.Point(47, 238);
+            this.LabelMessage.Location = new System.Drawing.Point(83, 331);
             this.LabelMessage.Name = "LabelMessage";
             this.LabelMessage.Size = new System.Drawing.Size(53, 13);
             this.LabelMessage.TabIndex = 9;
@@ -144,7 +147,7 @@ namespace MyBuddy
             // 
             // CmdSend
             // 
-            this.CmdSend.Location = new System.Drawing.Point(153, 294);
+            this.CmdSend.Location = new System.Drawing.Point(189, 387);
             this.CmdSend.Name = "CmdSend";
             this.CmdSend.Size = new System.Drawing.Size(100, 40);
             this.CmdSend.TabIndex = 11;
@@ -152,11 +155,22 @@ namespace MyBuddy
             this.CmdSend.UseVisualStyleBackColor = true;
             this.CmdSend.Click += new System.EventHandler(this.CmdSend_Click);
             // 
+            // CmdOpenProgram
+            // 
+            this.CmdOpenProgram.Location = new System.Drawing.Point(47, 166);
+            this.CmdOpenProgram.Name = "CmdOpenProgram";
+            this.CmdOpenProgram.Size = new System.Drawing.Size(100, 40);
+            this.CmdOpenProgram.TabIndex = 12;
+            this.CmdOpenProgram.Text = "Open Program";
+            this.CmdOpenProgram.UseVisualStyleBackColor = true;
+            this.CmdOpenProgram.Click += new System.EventHandler(this.CmdOpenProgram_Click);
+            // 
             // FormDashboard
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(301, 439);
+            this.Controls.Add(this.CmdOpenProgram);
             this.Controls.Add(this.CmdSend);
             this.Controls.Add(this.TBMessage);
             this.Controls.Add(this.LabelMessage);
@@ -172,6 +186,7 @@ namespace MyBuddy
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "FormDashboard";
             this.Text = "MyBuddy Control Board";
+            this.TopMost = true;
             this.Load += new System.EventHandler(this.FormDashboard_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -192,6 +207,8 @@ namespace MyBuddy
         private System.Windows.Forms.TextBox TBMessage;
         private System.Windows.Forms.Label LabelMessage;
         private System.Windows.Forms.Button CmdSend;
+        private System.Windows.Forms.Button CmdOpenProgram;
+        private System.Windows.Forms.Timer timer1;
     }
 }
 

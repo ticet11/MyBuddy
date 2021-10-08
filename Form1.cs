@@ -1,10 +1,12 @@
 ﻿using System;
 using DoubleAgent.AxControl;
-using System.Windows.Forms;
+using System.Diagnostics;
 using System.Net.Mail;
 using System.Net;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 using S22.Imap;
+using System.Threading;
 
 namespace MyBuddy
 {
@@ -126,6 +128,27 @@ namespace MyBuddy
                 newAgent.Characters["MyBuddy"].Speak($"{m.From} says something about \"{m.Subject}.\"");
             });
 
+        }
+
+        [System.Runtime.InteropServices.DllImport("user32.dll")]
+        static extern IntPtr SetParent(IntPtr hWndChild, IntPtr hWndNewParent);
+
+        private void CmdOpenProgram_Click(object sender, EventArgs e)
+        {
+            OpenFileDialog od = new OpenFileDialog();
+            if (od.ShowDialog() == DialogResult.OK)
+            {
+                Process proc = Process.Start(od.FileName);
+                proc.WaitForInputIdle();
+
+                while (proc.MainWindowHandle == IntPtr.Zero)
+                {
+                    Thread.Sleep(100);
+                    proc.Refresh();
+                }
+
+                SetParent(proc.MainWindowHandle, this.Handle);
+            }
         }
     }
 }
