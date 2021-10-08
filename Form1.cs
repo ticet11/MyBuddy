@@ -123,7 +123,7 @@ namespace MyBuddy
             MailMessage m = e.Client.GetMessage(e.MessageUID, FetchOptions.Normal);
             f.Invoke((MethodInvoker)delegate
             {
-                newAgent.Characters["MyBuddy"].Speak($"{m.From} says something about \"{m.Subject}.\" You might want to take a look");
+                newAgent.Characters["MyBuddy"].Speak($"{m.From} says something about \"{m.Subject}.\"");
             });
 
         }
