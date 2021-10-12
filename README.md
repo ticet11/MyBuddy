@@ -2,11 +2,15 @@
 
 This is a custom Microsoft Agent software. You can select an Agent Character [here](https://bellcraft.com/mash/chars.aspx) or use Pikachu, which is included. You'll have to update the path to align with your own directory. 
 
+![Form1.cs - Line 37: newAgent.Characters.Load("MyBuddy", "E:\\Coding Projects\\MyBuddy\\pikachu.acs");](./filelocation.png)
+
 Currently, MyBuddy can perform the following services:
 - Notify you of e-mails
 - Send e-mails (Must set up UserSecrets file, with your username and password, and update host servers to your e-mail provider's)
 - Speak whatever you type for him
 - Open some programs within the interface window
+
+![Interface of application, showing buttons for actions above](./interface.png)
 
 Things I'm planning to add (accepting suggestions):
 - Further e-mail integration
