@@ -42,7 +42,6 @@ namespace MyBuddy
             this.TBMessage = new System.Windows.Forms.TextBox();
             this.LabelMessage = new System.Windows.Forms.Label();
             this.CmdSend = new System.Windows.Forms.Button();
-            this.CmdOpenProgram = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // CmdShow
@@ -193,7 +192,6 @@ namespace MyBuddy
         private System.Windows.Forms.TextBox TBMessage;
         private System.Windows.Forms.Label LabelMessage;
         private System.Windows.Forms.Button CmdSend;
-        private System.Windows.Forms.Button CmdOpenProgram;
     }
 }
 
